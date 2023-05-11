@@ -1,0 +1,11 @@
+name: dartivemon
+description: Dart file monitor and runner
+version: 0.0.1
+environment:
+  sdk: ^3.0.0
+executables:
+  dartivemon: dartivemon
+
+dev_dependencies:
+  lints: ^1.0.1
+
