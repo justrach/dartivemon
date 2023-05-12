@@ -2,12 +2,23 @@ import 'dart:io';
 import 'dart:async';
 
 void main(List<String> arguments) async {
-  if (arguments.isEmpty || !arguments[0].endsWith('.dart')) {
-    print('Please specify a valid .dart file to run.');
+  if (arguments.isEmpty) {
+    print('Please specify a command or a .dart file to run.');
     exitCode = 2;
   } else {
-    String filename = arguments[0];
-    await watchAndRunDartFile(filename);
+    String command = arguments[0];
+
+    if (command == 'fe') {
+      await runFlutterApp();
+    } else if (command == 'be' && arguments.length > 1) {
+      String filename = arguments[1];
+      await watchAndRunDartFile(filename);
+    } else if (command.endsWith('.dart')) {
+      await watchAndRunDartFile(command);
+    } else {
+      print('Invalid command or filename.');
+      exitCode = 2;
+    }
   }
 }
 
@@ -29,7 +40,7 @@ Future<void> watchAndRunDartFile(String filename) async {
 
 Future<Process> runDartProcess(String filename, Process? oldProcess) async {
   // Kill old process if it exists
-   oldProcess?.kill();
+  oldProcess?.kill();
   // Start new process
   Process process = await Process.start('dart', [filename]);
 
@@ -38,4 +49,23 @@ Future<Process> runDartProcess(String filename, Process? oldProcess) async {
   process.stderr.transform(SystemEncoding().decoder).listen(print);
 
   return process;
+}
+
+Future<void> runFlutterApp() async {
+  print("Please take note of your device ID");
+  Process? flutterProcess = await Process.start('flutter', ['run']);
+  print("Please input your device ID:");
+  String? deviceID = stdin.readLineSync();
+  if (deviceID == null || deviceID.isEmpty) {
+    print("Invalid device ID. Please try again with a valid device ID.");
+    exit(1);
+  }
+
+  flutterProcess = await Process.start('flutter', ['run', '-d', deviceID]);
+  _redirectOutput(flutterProcess);
+}
+
+void _redirectOutput(Process process) {
+  process.stdout.transform(SystemEncoding().decoder).listen(print);
+  process.stderr.transform(SystemEncoding().decoder).listen(print);
 }
