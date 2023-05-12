@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:async';
 
 void main(List<String> arguments) async {
-  if (arguments.isEmpty) {
-    print('Please specify a command or a .dart file to run.');
+  if (arguments.isEmpty || arguments[0] == '-help') {
+    displayHelpMessage();
     exitCode = 2;
   } else {
     String command = arguments[0];
@@ -17,11 +17,20 @@ void main(List<String> arguments) async {
       await watchAndRunDartFile(command);
     } else {
       print('Invalid command or filename.');
+      displayHelpMessage();
       exitCode = 2;
     }
   }
 }
 
+void displayHelpMessage() {
+  print('Usage: dartivemon <command> [<filename>]\n'
+      'Commands:\n'
+      '  fe                   Run Flutter app\n'
+      '  be <filename>        Watch and run Dart backend file\n'
+      '  <filename>           Watch and run Dart file\n'
+      '  -help                Display this help message\n');
+}
 Future<void> watchAndRunDartFile(String filename) async {
   Process? dartProcess;
 

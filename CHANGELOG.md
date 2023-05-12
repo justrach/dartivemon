@@ -1,10 +1,12 @@
 ## 0.0.1
-
 - Initial version.
 
-## 0.0.2 
+## 0.0.2
+- Added functionality to run a Dart backend file (`be` command).
+- Added functionality to run a Flutter app (`fe` command).
+- The Dart file is now specified as an argument instead of being hardcoded.
 
-- Added CLI functionality, allowing users to specify a `.dart` file to run.
-- Added `fe` command for running a Flutter application.
-- Added `be` command for watching and running a specific `.dart` file.
-- Dartivemon now supports three modes of operation: run `.dart` file, run Flutter app, or watch and run `.dart` file.
+## 0.0.3
+- Added help message functionality (`-help` command).
+- The tool can now be installed and updated globally.
+- Improved error handling for invalid commands.
