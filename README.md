@@ -11,6 +11,7 @@ To install Dartivemon, use the `dart pub global activate` command:
 ```bash
 dart pub global activate dartivemon
 ```
+[![pub package](https://img.shields.io/pub/v/dartivemon.svg)](https://pub.dev/packages/dartivemon)
 # Usage
 Run Dartivemon from the command line by specifying a `.dart` file, `fe` for running a Flutter application, or `be` followed by a `.dart` file to watch and run the file:
 ### To update Dartivemon, use the same command again.
