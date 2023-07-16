@@ -5,6 +5,8 @@ void main(List<String> arguments) async {
   if (arguments.isEmpty || arguments[0] == '-help') {
     displayHelpMessage();
     exitCode = 2;
+  } else if (arguments[0] == '--version') {
+    displayVersionMessage();
   } else {
     String command = arguments[0];
 
@@ -23,14 +25,20 @@ void main(List<String> arguments) async {
   }
 }
 
+void displayVersionMessage() {
+  print('Dartivemon version 0.0.4'); // Replace with your actual version number
+}
+
 void displayHelpMessage() {
   print('Usage: dartivemon <command> [<filename>]\n'
       'Commands:\n'
       '  fe                   Run Flutter app\n'
       '  be <filename>        Watch and run Dart backend file\n'
       '  <filename>           Watch and run Dart file\n'
-      '  -help                Display this help message\n');
+      '  -help                Display this help message\n'
+      '  --version            Display version number\n');
 }
+
 Future<void> watchAndRunDartFile(String filename) async {
   Process? dartProcess;
 
