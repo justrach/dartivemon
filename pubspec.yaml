@@ -1,6 +1,6 @@
 name: dartivemon
 description: A CLI tool that runs a Dart application and a Flutter application simultaneously, and restarts the Dart app whenever changes are detected.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/justrach/dartivemon # replace with your GitHub profile or project page URL
 repository: https://github.com/justrach/dartivemon # replace with your GitHub project URL
 environment:

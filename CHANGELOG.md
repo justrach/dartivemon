@@ -10,3 +10,6 @@
 - Added help message functionality (`-help` command).
 - The tool can now be installed and updated globally.
 - Improved error handling for invalid commands.
+
+## 0.0.4
+- Added a `version` function to enable users to see if library was installed successfully
