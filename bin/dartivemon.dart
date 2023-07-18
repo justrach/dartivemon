@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'dart:async';
+import 'dart:core';
 
 void main(List<String> arguments) async {
   if (arguments.isEmpty || arguments[0] == '-help') {
@@ -12,6 +12,16 @@ void main(List<String> arguments) async {
 
     if (command == 'fe') {
       await runFlutterApp();
+
+      // Navigate to /src folder and run backend
+      final srcDirectory = Directory('./src');
+      if(await srcDirectory.exists()) {
+        final dartFiles = srcDirectory.listSync(recursive: true)
+            .where((entity) => entity is File && entity.path.endsWith('.dart'));
+        for (var dartFile in dartFiles) {
+          await watchAndRunDartFile(dartFile.path);
+        }
+      }
     } else if (command == 'be' && arguments.length > 1) {
       String filename = arguments[1];
       await watchAndRunDartFile(filename);
@@ -26,13 +36,13 @@ void main(List<String> arguments) async {
 }
 
 void displayVersionMessage() {
-  print('Dartivemon version 0.0.4'); // Replace with your actual version number
+  print('Dartivemon version 0.0.5'); // Replace with your actual version number
 }
 
 void displayHelpMessage() {
   print('Usage: dartivemon <command> [<filename>]\n'
       'Commands:\n'
-      '  fe                   Run Flutter app\n'
+      '  fe </src/.dart>      Run Flutter app\n'
       '  be <filename>        Watch and run Dart backend file\n'
       '  <filename>           Watch and run Dart file\n'
       '  -help                Display this help message\n'

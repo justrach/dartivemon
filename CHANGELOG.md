@@ -13,3 +13,6 @@
 
 ## 0.0.4
 - Added a `version` function to enable users to see if library was installed successfully
+
+## 0.0.5
+- Added a /src/app.dart finder to ensure that the user can also run an actual dartivemon server when debugging
