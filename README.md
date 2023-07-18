@@ -22,6 +22,7 @@ Run Dartivemon with one of the following commands:
 dartivemon fe: Runs Flutter app.
 dartivemon be <filename>: Watches and runs Dart backend file.
 dartivemon <filename>: Watches and runs Dart file.
+dartivemon --version: Displays the current version of Dartivemon.
 ```
 You can also display the help message with -help command:
 `dartivemon -help`
@@ -36,6 +37,3 @@ You can also display the help message with -help command:
 * The Flutter app is started using the device ID entered by the user. Make sure to enter the correct device ID.
 * If the Dart app file is modified, the Dart server/app will be restarted automatically.
 * If you enter 'r' or 'R' into the console, it will be sent to the Flutter process.
-
-
-This updated documentation reflects the added CLI functionality and new ways of using Dartivemon.
